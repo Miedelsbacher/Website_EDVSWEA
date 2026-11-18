@@ -450,13 +450,12 @@ export function LegalModals() {
         </section>
         <section className={sectionClass}>
           <h3 className={headingClass}>Umsatzsteuer und redaktionelle Inhalte</h3>
-          <p className={paragraphClass}>Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: DE352438907</p>
           <p className={paragraphClass}>Gemäß § 19 UStG wird keine Umsatzsteuer ausgewiesen (Kleinunternehmerregelung).</p>
           <p className={paragraphClass}>Verantwortlich für journalistisch-redaktionelle Inhalte gemäß § 18 Abs. 2 MStV: Uwe Christian, Freiburgstr. 12, 73614 Schorndorf.</p>
         </section>
         <section className={sectionClass}>
           <h3 className={headingClass}>Haftung und Bildnachweise</h3>
-          <p className={paragraphClass}>Für Inhalte verlinkter externer Seiten sind ausschließlich deren jeweilige Betreiber verantwortlich. Urheber und Bildquelle der eigenen Bilder: Uwe Christian, soweit bei einzelnen Medien nichts anderes angegeben ist.</p>
+          <p className={paragraphClass}>Für Inhalte verlinkter externer Seiten sind ausschließlich deren jeweilige Betreiber verantwortlich. Urheber der Medien auf der Seite: Uwe Christian, soweit bei einzelnen Medien nichts anderes angegeben ist.</p>
         </section>
       </LegalDialog>
     </>
