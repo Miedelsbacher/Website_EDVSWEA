@@ -455,7 +455,7 @@ export function LegalModals() {
         </section>
         <section className={sectionClass}>
           <h3 className={headingClass}>Haftung und Bildnachweise</h3>
-          <p className={paragraphClass}>Für Inhalte verlinkter externer Seiten sind ausschließlich deren jeweilige Betreiber verantwortlich. Urheber und Bildquelle der eigenen Bilder: Uwe Christian, soweit bei einzelnen Medien nichts anderes angegeben ist.</p>
+          <p className={paragraphClass}>Für Inhalte verlinkter externer Seiten sind ausschließlich deren jeweilige Betreiber verantwortlich. Urheber der Medien auf der Seite: Uwe Christian, soweit bei einzelnen Medien nichts anderes angegeben ist.</p>
         </section>
       </LegalDialog>
     </>
