@@ -1,0 +1,29 @@
+{
+  "redirects": [
+    {
+      "source": "/impressum.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/edv-dienstleistungen.html",
+      "destination": "/it-service",
+      "permanent": true
+    },
+    {
+      "source": "/kontakt.html",
+      "destination": "/kontakt",
+      "permanent": true
+    },
+    {
+      "source": "/fernzugriff.html",
+      "destination": "/it-service",
+      "permanent": true
+    },
+    {
+      "source": "/edv-erholung.html",
+      "destination": "/waldbaden",
+      "permanent": true
+    }
+  ]
+}
