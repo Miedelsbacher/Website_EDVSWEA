@@ -306,7 +306,7 @@ const kiGalleryImages = [
 const kiVideoExamples = [
   {
     src: "/swea/ai-examples/gemini_generated_video_dbe46628.mp4",
-    poster: "/swea/ai-examples/ki-studio-video-poster-happy-59.png",
+    poster: "",
     alt: "KI-generiertes Beispielvideo",
     caption: "KI-generiertes Video",
   },
