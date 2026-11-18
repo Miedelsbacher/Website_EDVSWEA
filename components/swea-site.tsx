@@ -306,15 +306,15 @@ const kiGalleryImages = [
 const kiVideoExamples = [
   {
     src: "/swea/ai-examples/gemini_generated_video_dbe46628.mp4",
-    poster: "/swea/ai-examples/ki-studio-video-poster-happy-59.png",
+    poster: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-YR1D2PCJVo0Gen80NyDsCjmoNHO3L5.png",
     alt: "KI-generiertes Beispielvideo",
-    caption: "KI-generiertes Video",
+    caption: "Drachenflug",
   },
   {
     src: "/swea/ai-examples/video-cf140fc6.mp4",
     poster: "/swea/ai-examples/ki-studio-video-poster-happy-59.png",
     alt: "Beispiel eines personalisierten Videoclips",
-    caption: "Videoclip",
+    caption: "Schokoladen-Ausflug",
   },
   {
     src: "/swea/medien/ki-video.mp4",
