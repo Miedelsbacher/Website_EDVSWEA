@@ -5,6 +5,9 @@ export const dynamic = 'force-static'
 const siteUrl = 'https://swea.de'
 const routes = [
   '/',
+  '/agb',
+  '/datenschutz',
+  '/impressum',
   '/datenrettung',
   '/it-service',
   '/ki-studio',

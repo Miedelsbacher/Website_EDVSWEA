@@ -31,7 +31,31 @@ export function LegalModalTrigger({ dialogId, className, children }: { dialogId:
   )
 }
 
-function LegalDialog({ id, title, eyebrow, headerDetails, children }: { id: string; title: string; eyebrow: string; headerDetails?: ReactNode; children: ReactNode }) {
+function LegalDialog({ id, title, eyebrow, headerDetails, children, asPage = false }: { id: string; title: string; eyebrow: string; headerDetails?: ReactNode; children: ReactNode; asPage?: boolean }) {
+  const content = (
+    <>
+      <div className={`${asPage ? "" : "sticky top-0 z-10 bg-area-surface/95 backdrop-blur"} flex items-start justify-between gap-5 border-b border-area-border px-5 py-5 sm:px-8`}>
+        <div className="min-w-0">
+          <span className="eyebrow">{eyebrow}</span>
+          <h2 className="mt-2 text-2xl font-semibold tracking-tight text-area-deep sm:text-3xl" id={asPage ? `${id}-page-title` : `${id}-title`}>{title}</h2>
+          {headerDetails}
+        </div>
+        {!asPage && (
+          <form method="dialog">
+            <button aria-label={`${title} schließen`} className="inline-flex size-11 shrink-0 items-center justify-center rounded-full border border-area-border text-area-deep transition hover:bg-area-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-area-primary focus-visible:ring-offset-2" type="submit">
+              <X aria-hidden="true" size={18} />
+            </button>
+          </form>
+        )}
+      </div>
+      <div className="flex flex-col gap-7 px-5 py-6 sm:px-8 sm:py-8">{children}</div>
+    </>
+  )
+
+  if (asPage) {
+    return <article aria-labelledby={`${id}-page-title`} className="overflow-hidden rounded-3xl border border-area-border bg-area-surface text-area-deep shadow-sm">{content}</article>
+  }
+
   return (
     <dialog
       aria-labelledby={`${id}-title`}
@@ -41,24 +65,12 @@ function LegalDialog({ id, title, eyebrow, headerDetails, children }: { id: stri
         if (event.target === event.currentTarget) event.currentTarget.close()
       }}
     >
-      <div className="sticky top-0 z-10 flex items-start justify-between gap-5 border-b border-area-border bg-area-surface/95 px-5 py-5 backdrop-blur sm:px-8">
-        <div className="min-w-0">
-          <span className="eyebrow">{eyebrow}</span>
-          <h2 className="mt-2 text-2xl font-semibold tracking-tight text-area-deep sm:text-3xl" id={`${id}-title`}>{title}</h2>
-          {headerDetails}
-        </div>
-        <form method="dialog">
-          <button aria-label={`${title} schließen`} className="inline-flex size-11 shrink-0 items-center justify-center rounded-full border border-area-border text-area-deep transition hover:bg-area-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-area-primary focus-visible:ring-offset-2" type="submit">
-            <X aria-hidden="true" size={18} />
-          </button>
-        </form>
-      </div>
-      <div className="flex flex-col gap-7 px-5 py-6 sm:px-8 sm:py-8">{children}</div>
+      {content}
     </dialog>
   )
 }
 
-export function AGBModal() {
+export function AGBModal({ asPage = false }: { asPage?: boolean }) {
   return (
     <LegalDialog
       eyebrow="Vertragsbedingungen"
@@ -68,8 +80,9 @@ export function AGBModal() {
           E-Mail: <a className={linkClass} href="mailto:info@swea.de">info@swea.de</a>
         </address>
       )}
+      asPage={asPage}
       id="agb-modal"
-      title="Allgemeine Geschäftsbedingungen"
+      title={asPage ? "Allgemeine Geschäftsbedingungen (AGB)" : "Allgemeine Geschäftsbedingungen"}
     >
       <section className={sectionClass}>
         <h3 className={headingClass}>Gliederung</h3>
@@ -302,11 +315,12 @@ export function AGBModal() {
   )
 }
 
-export function LegalModals() {
+export function LegalModals({ staticDocument }: { staticDocument?: "imprint" | "privacy" | "terms" } = {}) {
   return (
     <>
-      <AGBModal />
-      <LegalDialog eyebrow="Datenschutz · Stand: 13. November 2026" id="privacy-modal" title="Datenschutzerklärung">
+      {(!staticDocument || staticDocument === "terms") && <AGBModal asPage={staticDocument === "terms"} />}
+      {(!staticDocument || staticDocument === "privacy") && (
+      <LegalDialog asPage={staticDocument === "privacy"} eyebrow="Datenschutz · Stand: 13. November 2026" id="privacy-modal" title="Datenschutzerklärung">
         <section className={sectionClass}>
           <h3 className={headingClass}>Geltungsbereich</h3>
           <p className={paragraphClass}>Diese Datenschutzerklärung gilt für den Internetauftritt unter <a className={linkClass} href="https://www.swea.de/" rel="noreferrer" target="_blank">www.swea.de</a>.</p>
@@ -361,8 +375,9 @@ export function LegalModals() {
           <p className={paragraphClass}>Zur Ausübung Ihrer Rechte genügt eine Nachricht an <a className={linkClass} href="mailto:info@swea.de">info@swea.de</a>. Sie haben außerdem das Recht, sich bei einer Datenschutzaufsichtsbehörde zu beschweren, insbesondere beim <a className={linkClass} href="https://www.baden-wuerttemberg.datenschutz.de/" rel="noreferrer" target="_blank">Landesbeauftragten für den Datenschutz und die Informationsfreiheit Baden-Württemberg</a>.</p>
         </section>
       </LegalDialog>
+      )}
 
-      <LegalDialog eyebrow="Verbraucherinformationen" id="withdrawal-modal" title="Widerrufsbelehrung & AGB-Hinweise">
+      {!staticDocument && <LegalDialog eyebrow="Verbraucherinformationen" id="withdrawal-modal" title="Widerrufsbelehrung & AGB-Hinweise">
         <section className={sectionClass}>
           <h3 className={headingClass}>Widerrufsrecht für Verbraucher</h3>
           <p className={paragraphClass}>Wenn Sie Verbraucher im Sinne des § 13 BGB sind und den Vertrag mit mir ausschließlich über Fernkommunikationsmittel (zum Beispiel per E-Mail, Telefon oder Kontaktformular) oder außerhalb meiner Geschäftsräume geschlossen haben, steht Ihnen grundsätzlich ein gesetzliches Widerrufsrecht zu. Unternehmern steht kein gesetzliches Widerrufsrecht zu.</p>
@@ -434,9 +449,10 @@ export function LegalModals() {
             (*) Unzutreffendes streichen.
           </div>
         </section>
-      </LegalDialog>
+      </LegalDialog>}
 
-      <LegalDialog eyebrow="Anbieterkennzeichnung" id="imprint-modal" title="Impressum">
+      {(!staticDocument || staticDocument === "imprint") && (
+      <LegalDialog asPage={staticDocument === "imprint"} eyebrow="Anbieterkennzeichnung" id="imprint-modal" title="Impressum">
         <section className={sectionClass}>
           <h3 className={headingClass}>Angaben gemäß § 5 DDG</h3>
           <p className={paragraphClass}>Diese Anbieterkennzeichnung gilt für den Internetauftritt unter <a className={linkClass} href="https://www.swea.de/" rel="noreferrer" target="_blank">www.swea.de</a>.</p>
@@ -458,6 +474,7 @@ export function LegalModals() {
           <p className={paragraphClass}>Für Inhalte verlinkter externer Seiten sind ausschließlich deren jeweilige Betreiber verantwortlich. Urheber der Medien auf der Seite: Uwe Christian, soweit bei einzelnen Medien nichts anderes angegeben ist.</p>
         </section>
       </LegalDialog>
+      )}
     </>
   )
 }

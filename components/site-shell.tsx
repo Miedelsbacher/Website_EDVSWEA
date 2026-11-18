@@ -82,10 +82,9 @@ const footerContactItems = [
 ] as const
 
 const legalLinks = [
-  { dialogId: "imprint-modal", label: "Impressum" },
-  { dialogId: "privacy-modal", label: "Datenschutz" },
-  { dialogId: "agb-modal", label: "AGB" },
-  { dialogId: "withdrawal-modal", label: "Widerrufsbelehrung" },
+  { href: "/impressum", label: "Impressum" },
+  { href: "/datenschutz", label: "Datenschutz" },
+  { href: "/agb", label: "AGB" },
 ] as const
 
 export function SiteFooter() {
@@ -133,10 +132,13 @@ export function SiteFooter() {
             <nav aria-label="Rechtliche Informationen">
               <ul className="flex flex-wrap gap-x-4 gap-y-1">
                 {legalLinks.map((link) => (
-                  <li key={link.dialogId}>
-                    <LegalModalTrigger className="inline-flex min-h-8 items-center rounded text-xs font-semibold text-brand-primary underline decoration-brand-primary/40 underline-offset-4 transition hover:text-brand-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2" dialogId={link.dialogId}>{link.label}</LegalModalTrigger>
+                  <li key={link.href}>
+                    <Link className="inline-flex min-h-8 items-center rounded text-xs font-semibold text-brand-primary underline decoration-brand-primary/40 underline-offset-4 transition hover:text-brand-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2" href={link.href}>{link.label}</Link>
                   </li>
                 ))}
+                <li>
+                  <LegalModalTrigger className="inline-flex min-h-8 items-center rounded text-xs font-semibold text-brand-primary underline decoration-brand-primary/40 underline-offset-4 transition hover:text-brand-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2" dialogId="withdrawal-modal">Widerrufsbelehrung</LegalModalTrigger>
+                </li>
               </ul>
             </nav>
             <p className="leading-5">Kleinunternehmerregelung nach § 19 UStG: Es wird keine Umsatzsteuer ausgewiesen.</p>
