@@ -450,7 +450,6 @@ export function LegalModals() {
         </section>
         <section className={sectionClass}>
           <h3 className={headingClass}>Umsatzsteuer und redaktionelle Inhalte</h3>
-          <p className={paragraphClass}>Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: DE352438907</p>
           <p className={paragraphClass}>Gemäß § 19 UStG wird keine Umsatzsteuer ausgewiesen (Kleinunternehmerregelung).</p>
           <p className={paragraphClass}>Verantwortlich für journalistisch-redaktionelle Inhalte gemäß § 18 Abs. 2 MStV: Uwe Christian, Freiburgstr. 12, 73614 Schorndorf.</p>
         </section>
